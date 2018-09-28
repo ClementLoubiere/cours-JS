@@ -89,16 +89,84 @@ console.log(baliseA);
 
 /*************************** Exercice 3: Cliquez sur 3 mages pour les changer en images différentes *****************************/
 
-
+// Tableau des images
 let imgClick = ["https://allfreshwallpapers.com/uploads/posts/wallpaper-wide-nature/thumb/main_wallpaper-wide-nature.jpg",
     "http://images4.fanpop.com/image/photos/20500000/Kuttanad-kerala-20552751-290-180.jpg",
     "https://allfreshwallpapers.com/uploads/posts/wallpaper-in-hd-of-nature/thumb/main_wallpaper-in-hd-of-nature.jpg"
 ];
+// On récupère toutes nos images se trouvant dans l'id services
 let change = document.querySelectorAll('#services img');
 console.log(change);
 
-for (let i = 0; i < change.length; i++) {
+for (let i = 0; i < change.length; i++) { // Boucle pour parcourir notre tableau d'img(dataImagesHtml) afin de mettre un évènement au click à chacunes d'entre elles  
     change[i].addEventListener('click', function() {
-        change[i].src = imgClick[i];
+        change[i].src = imgClick[i]; // Modification de la source de l'img
     })
 };
+
+/********************************** Exercice 4: Ajouter du texte avec le Read More ************************************/
+
+// let readMore = document.querySelector("#services a");
+// let moreText = document.querySelector("#services p");
+// let readLess = document.querySelector("#services a");
+
+// console.log(moreText);
+
+// readMore.addEventListener('click', function() {
+//     moreText.textContent += "Nullamlacus dui ipsum conseque loborttis non euisque morbi penas dapibulum orna.Nullamlacus dui ipsum conseque loborttis non euisque morbi penas dapibulum orna.Nullamlacus dui ipsum conseque loborttis non euisque morbi penas dapibulum orna.";
+//     readMore.textContent = "";
+//     readMore.textContent += "Read Less >>";
+
+//     readLess.addEventListener('click', function() {
+//         moreText.textContent = "Nullamlacus dui ipsum conseque loborttis non euisque morbi penas dapibulum orna.";
+//         readLess.textContent = "";
+//         readLess.textContent += "Read More >>"
+//     })
+// })
+
+/**************************** Exercice 4: Correction ********************************/
+
+let readBaliseA = document.querySelectorAll("#services a")[0]; // Récupération des balises a dans l'id serviceset affectation de la 1ere balise a dans la variable (readBaliseA)
+const textMoreLess = document.querySelectorAll("#services figcaption p")[0].innerHTML; // Sauvegarde du texte original de la balise p
+
+readBaliseA.addEventListener("click", function() {
+    event.preventDefault(); //Supprime l'évènement par défaut
+
+    let paragrapheRead = document.querySelectorAll("#services figcaption p")[0];
+
+    if (readBaliseA.innerHTML == "Read More »") { // Vérifie le texte de la balise a (readBaliseA). Si son texte est le texte d'originedans le fichier html, on rentre dans le if
+        readBaliseA.innerHTML = "Read Less &raquo;"
+        paragrapheRead.innerHTML += "Nullamlacus dui ipsum conseque loborttis non euisque morbi penas dapibulum orna.Nullamlacus dui ipsum conseque loborttis non euisque morbi penas dapibulum orna.Nullamlacus dui ipsum conseque loborttis non euisque morbi penas dapibulum orna."
+
+    } else { // SI la balise a (readBaliseA) affiche "Read Less", on rentre dans le else
+        readBaliseA.innerHTML = "Read More »"
+        paragrapheRead.innerHTML = textMoreLess
+    }
+})
+
+/********************************* Exemple de création et d'utilisation d'objet avec date **************************************/
+
+// let personne = {
+//     nom: "LOUBIERE",
+//     prenom: "Clément",
+//     dateNaiss: "19 may 1990",
+//     children: [{
+//             nom: "LOUBIERE",
+//             prenom: "Crid",
+//             dateNaiss: "20 february 2020",
+//             children: []
+//         },
+//         {
+//             nom: "LOUBIERE",
+//             prenom: "Cridounette",
+//             dateNaiss: "10 october 2023",
+//             children: []
+//         },
+//     ],
+//     age: function() {
+//         let anniversaire = new Date(this.dateNaiss); // On génère une date à partir d'une année ultérieure (ici la date de naissance) - getTime() => millisecondes depuis le 1er janvier 1970
+//         return new Number((new Date().getTime() - anniversaire.getTime()) / 31536000000).toFixed(0) //On retourne un nombre ( ( la date d'aujourd'hui en millisecondes - dateNaiss en millisecondes )/ une année en millisecondes ) [On peut le faire avec l'année ou les heures ou les secondes etc]
+//     }
+// }
+// console.log(personne)
+// console.log(personne.age())
