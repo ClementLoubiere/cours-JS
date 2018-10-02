@@ -5,6 +5,8 @@
     <title>Basic 88</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles/layout.css" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/animate.css">
     <!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
 </head>
 
@@ -31,7 +33,28 @@
         <div id="container" class="clear">
             <!-- Slider -->
             <section id="slider">
-                <a href="#"><img src="images/demo/960x360.gif" alt=""></a>
+                <a href="#" style="display: none"><img src="images/demo/960x360.gif" alt=""></a>
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="http://geekement-votre.fr/wp-content/uploads/2017/03/image-une-horizon-zero-dawn.jpg" alt="First slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="https://allcodesarebeautiful.com/wp-content/uploads/2014/08/bildrechte-titel1.jpg" alt="Second slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="http://svtik.free.fr/remed/2nde/prodprim/modis_ete.jpg" alt="Third slide">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
             </section>
             <!-- main content -->
             <div id="homepage">
@@ -83,25 +106,25 @@
 
                                         <!-- Text input-->
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Text Input</label>
-                                            <div class="col-md-4">
+                                            <label class="col-md-12 control-label" for="textinput">Text Input</label>
+                                            <div class="col-md-12">
                                                 <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
-                                                <span class="help-block">help</span>
+                                                <span class="help-block" id="textinputerror" style="display: none; color : red">Entrez un nom valide</span>
                                             </div>
                                         </div>
 
                                         <!-- Textarea -->
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textarea">Text Area</label>
-                                            <div class="col-md-4">
+                                            <label class="col-md-12 control-label" for="textarea">Text Area</label>
+                                            <div class="col-md-12">
                                                 <textarea class="form-control" id="textarea" name="textarea">default text</textarea>
                                             </div>
                                         </div>
 
                                         <!-- Select Basic -->
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="selectbasic">Select Basic</label>
-                                            <div class="col-md-4">
+                                            <label class="col-md-12 control-label" for="selectbasic">Select Basic</label>
+                                            <div class="col-md-12">
                                                 <select id="selectbasic" name="selectbasic" class="form-control">
                                           <option value="1">Option one</option>
                                           <option value="2">Option two</option>
@@ -111,8 +134,8 @@
 
                                         <!-- Select Multiple -->
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="selectmultiple">Select Multiple</label>
-                                            <div class="col-md-4">
+                                            <label class="col-md-12 control-label" for="selectmultiple">Select Multiple</label>
+                                            <div class="col-md-12">
                                                 <select id="selectmultiple" name="selectmultiple" class="form-control" multiple="multiple">
                                           <option value="1">Option one</option>
                                           <option value="2">Option two</option>
@@ -122,8 +145,8 @@
 
                                         <!-- Multiple Radios (inline) -->
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="radios">Inline Radios</label>
-                                            <div class="col-md-4">
+                                            <label class="col-md-12 control-label" for="radios">Inline Radios</label>
+                                            <div class="col-md-12">
                                                 <label class="radio-inline" for="radios-0">
                                           <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
                                           1
@@ -145,8 +168,8 @@
 
                                         <!-- Multiple Checkboxes (inline) -->
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="checkboxes">Inline Checkboxes</label>
-                                            <div class="col-md-4">
+                                            <label class="col-md-12 control-label" for="checkboxes">Inline Checkboxes</label>
+                                            <div class="col-md-12">
                                                 <label class="checkbox-inline" for="checkboxes-0">
                                           <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1">
                                           1
@@ -168,7 +191,7 @@
 
                                         <!-- Button (Double) -->
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="button1id">Double Button</label>
+                                            <label class="col-md-12 control-label" for="button1id">Double Button</label>
                                             <div class="col-md-8">
                                                 <button id="button1id" name="button1id" type="submit" class="btn btn-success">Good Button</button>
                                                 <button id="button2id" name="button2id" class="btn btn-danger">Scary Button</button>
@@ -253,6 +276,7 @@
         </footer>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <!-- <script src="scripts/script.js"></script> -->
     <script src="scripts/scriptJquery.js"></script>
 </body>

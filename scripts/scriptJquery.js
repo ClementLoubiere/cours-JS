@@ -1,16 +1,18 @@
+$('.carousel').carousel({
+    interval: 2000
+})
+
+
 // document.querySelectorAll = $()
 $("#services a").click(function(e) {
     e.preventDefault()
     if ($(this).html() == "Read More »") {
-        jQuery.data(
-            $(this).parent().parent().children("p"),
-            "text",
-            $(this).parent().parent().children("p").text()
-        )
+        // $(this).parent().parent().children("p").data("text", $(this).parent().parent().children("p").text())
         $(this).parent().parent().children("p").append("pfjapfha pfihpai paj fpaj jf pafjafi ajfihaf oaifh z uz uz uzhddddddddd zoij pf jfp ofj pofjpojfeopjf epojf pjf oezifhozihfeohf oefh meofh jh ofhs ff ùfopj pefja foef eùfiejf")
         $(this).html("Read Less &raquo;")
     } else {
         $(this).html("Read More »")
+            // $(this).parent().parent().children("p").data("text", $(this).parent().parent().children("p").text())
     }
 })
 
@@ -35,7 +37,7 @@ $("#footer li").on("click", function(e) {
 // })
 
 $("#footer .title").click(function() {
-    $(this).next().find("li").show() //.next() = frères et soeurs
+    $(this).next().find("li").show() //.next() = frères et soeurs suivant  .prev() = frères et soeurs précédent
 })
 
 /***************************************************/
@@ -82,17 +84,17 @@ $("#copyright .fl_left").click(function() {
 
 
 // Correction
-$("form").submit(function(e) {
-    e.preventDefault()
-    $("#textinput").val("J'ai mis du texte")
-    $("#textarea").text("J'ai encore mis du texte")
-    $("#selectbasic").val("2")
-    $("#selectmultiple").val("2")
-    $('input[name=radios]').prop("checked", false)
-    $('input[name=radios]').eq(1).prop("checked", true)
-    $("input[name=checkboxes]").prop("checked", false)
-    $("input[name=checkboxes]").eq(1).prop("checked", true)
-})
+// $("form").submit(function(e) {
+//     e.preventDefault()
+//     $("#textinput").val("J'ai mis du texte")
+//     $("#textarea").text("J'ai encore mis du texte")
+//     $("#selectbasic").val("2")
+//     $("#selectmultiple").val("2")
+//     $('input[name=radios]').prop("checked", false)
+//     $('input[name=radios]').eq(1).prop("checked", true)
+//     $("input[name=checkboxes]").prop("checked", false)
+//     $("input[name=checkboxes]").eq(1).prop("checked", true)
+// })
 
 /******************** Carroussel de 3 images différentes ******************************/
 
@@ -141,7 +143,7 @@ $("#services img").on('click', function() {
 let isOriginal = true;
 let arrayOrigin = [];
 
-$(".more").mouseenter(function() {
+$(".one_third a").mouseenter(function() {
     // Sauvegarde de l'état actuel du tableau
     if (isOriginal == true) {
         arrayOrigin.push($("#services img").eq(0).attr('src')) // Veut dire que cette image est stocké dans le tableau arrayOrigin en position 0
@@ -161,4 +163,141 @@ $(".more").mouseenter(function() {
     }
 
     isOriginal = (isOriginal) ? false : true // Condition pour alterner la condition true / false
+})
+
+
+/*******************************************************/
+
+$("form").submit(function(e) {
+    e.preventDefault()
+    let textinput = $("#textinput").val().trim(); // .trim() permet de supprimer les espaces
+    if (textinput.length < 1) { // textinput == "" fonctionne également
+        $("#textinput").css("border-color", "red")
+        $("#textinputerror").show()
+    } else {
+        $("#textinput").css("border-color", "green")
+        $("#textinputerror").hide()
+    }
+
+    let textarea = $("#textarea").val().trim();
+    (textarea == "") ? $("#textarea").css("border-color", "red"): $("#textarea").css("border-color", "green")
+
+    let selectbasic = $("#selectbasic").val().trim();
+    if (selectbasic == "") {
+        $("#selectbasic").css("border-color", "red")
+    } else {
+        $("#selectbasic").css("border-color", "green")
+    }
+
+    let selectmultiple = $("#selectmultiple").val();
+    (selectmultiple == "") ? $("#selectmultiple").css("border-color", "red"): $("#selectmultiple").css("border-color", "green")
+
+    let formcomplete = textinput && textarea && selectbasic && selectmultiple;
+    (formcomplete == true) ? $("form").hide(): $("form").show()
+    localStorage.setItem("data-squetuveux", $("form").serialize()) //Sauvegarde les données dans le navigateur en local Storage (sessionStorage existe également)
+        // .serialize() permet de récupérer toutes les données D'UN FORMULAIRE et les convertis en une chaine de caractère
+})
+
+
+/*********************** Utiliser les animations css via CDN ***************************/
+
+$("#header li").mouseenter(function() {
+
+    // $(this) renvoie un Object JQuery avec une taille (length) qui peut être considérée comme un array
+    // $(this)[0] renvoit la balise clicker (ex : <li>...</li>)
+
+    switch ($(this)[0]) {
+        case $("#header li").eq(0)[0]:
+            $(this).addClass("animated  bounceOutLeft slow")
+            break;
+        case $("#header li").eq(1)[0]:
+            $(this).addClass("animated flash slow")
+            break;
+        case $("#header li").eq(2)[0]:
+            $(this).addClass("animated  rotateIn slower")
+            break;
+        case $("#header li").eq(3)[0]:
+            $(this).addClass("animated  lightSpeedIn slow")
+            break;
+        case $("#header li").eq(4)[0]:
+            $(this).addClass("animated  zoomIn slow")
+            break;
+        default:
+            console.log("sorry")
+    }
+})
+
+/********************************** Animations ******************************************/
+
+// https://www.w3schools.com/jquery/eff_animate.asp
+
+// $("#services h2").click(function() {
+//     $(this).animate({
+//         opacity: 0.5,
+//         marginLeft: "65%",
+//     }, 2500, function() {
+//         $(this).animate({
+//             opacity: 1,
+//             marginLeft: "0%",
+//             wordSpacing: "-=22px"
+//         }, 2500)
+//     })
+// })
+
+/****** Autre façon de l'écrire ******/
+
+$("#services h2").click(function() {
+    let option = { opacity: 0.5, marginLeft: "65%", wordSpacing: "+=22px" }
+    $(this).animate(option, 2500, function() {
+        optionOrigine = { opacity: 1, marginLeft: "0%", wordSpacing: "-=22px" }
+        $(this).animate(optionOrigine, 2500)
+    })
+})
+
+/*******/
+
+$("h1").click(function(e) {
+    e.preventDefault();
+    $("#header h1").animate({
+        wordSpacing: "+=314px"
+    }, 3000, function() {
+        $("#header h1").animate({
+            wordSpacing: "-=314px"
+        }, 3000)
+    })
+})
+
+// Autre moyen
+
+// $("h1").click(function() {
+//     $(this).html('<a href="#">Basic <span>88</span></a>')
+//     $("h1 span").animate({
+//         marginLeft: "+=314px"
+//     }, 2500, function() {
+//         $(this).animate({
+//             marginLeft: "-=314px"
+//         }, 2500)
+//     })
+// })
+
+/*************************/
+
+$("#header h2").click(function() {
+    $(this).html('<span class="first">Free HTML5</span> <span class="second" style=" position: absolute; ">Website Template</span>')
+    $("#hgroup h2 .first").animate({
+        marginLeft: "+=310px"
+    }, 3000, function() {
+        $(this).animate({
+            marginLeft: "-=310px"
+        }, 3000)
+    })
+})
+$("#header h2").click(function() {
+    $("#hgroup h2 .second").animate({
+        right: "+=150px"
+    }, 3000, function() {
+        $(this).animate({
+            right: "-=150px"
+        }, 3000)
+    })
 })
